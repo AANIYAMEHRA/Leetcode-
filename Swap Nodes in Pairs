@@ -1,0 +1,43 @@
+Given a linked list, swap every two adjacent nodes and return its head. You must solve the problem without modifying the values in the list's nodes (i.e., only nodes themselves may be changed.)
+
+Example 1:
+
+Input: head = [1,2,3,4]
+
+Output: [2,1,4,3]
+
+
+CODE  //
+
+ListNode* swapPairs(ListNode* head) {
+        if(head == NULL || head->next == NULL){
+            return head;
+        }
+
+        ListNode* first = head;
+        ListNode* sec = head->next;
+        ListNode* prev = NULL;
+
+        while(first != NULL && sec != NULL){
+            ListNode* third = sec->next;
+
+            sec->next = first;
+            first->next = third;
+
+            if(prev != NULL){
+                prev->next = sec;
+            }else{
+                head = sec;
+            }
+
+            //update
+            prev = first;
+            first = third;
+            if(third != NULL){
+                sec = third->next;
+            }else{
+                sec= NULL;
+            }
+        }
+        return head;
+    }
