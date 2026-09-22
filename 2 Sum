@@ -26,6 +26,7 @@ CODE  //
 
 1.) Optimal solution
 
+
 class Solution {
 public:
     vector<int> twoSum(vector<int>& arr, int tar) {
@@ -50,7 +51,9 @@ public:
 };
 
 
+
 2.) Brute-Force approach
+
 
 #include <iostream>
 #include <vector>
