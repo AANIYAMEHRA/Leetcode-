@@ -24,7 +24,9 @@ Output: []
 Explanation: The only possible triplet does not sum up to 0.
 
 
+
 CODE //
+
 
 
 1.) Optimal solution
@@ -62,7 +64,10 @@ public:
 };
 
 
+
+
 2.) Brute -Force approach
+
 
 
 #include <iostream>
