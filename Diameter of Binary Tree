@@ -6,6 +6,9 @@ The length of a path between two nodes is represented by the number of edges bet
 CODE //
 
 
+1.)
+
+
 class Solution {
 public:
     int height(TreeNode* root){
@@ -31,3 +34,36 @@ public:
         return max(currDiam, max(leftDiam, rightDiam));
     }
 };
+
+
+
+2.)
+
+
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+class Solution:
+    def diameterOfBinaryTree(self, root):
+        self.diameter = 0
+
+        def dfs(node):
+            if not node:
+                return 0
+
+            left = dfs(node.left)
+            right = dfs(node.right)
+
+            # Update the maximum diameter
+            self.diameter = max(self.diameter, left + right)
+
+            # Return height of current subtree
+            return 1 + max(left, right)
+
+        dfs(root)
+        return self.diameter
