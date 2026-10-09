@@ -41,6 +41,10 @@ CODE //
 
 
 
+#include <iostream>
+#include <vector>
+using namespace std;
+
 bool isValid(vector<int> &arr, int n, int m, int mid){
     
     int stu=1, pages=0;
@@ -88,4 +92,14 @@ int allocateBooks(vector<int> &arr, int n, int m){
     }
     
     return ans;
+}
+
+
+int main() {
+    vector<int> arr = {12, 34, 67, 90};
+    int k = 2;
+
+    cout << "Mininmum valid limit for the books: " << allocateBooks(arr, arr.size(), k);
+
+    return 0;
 }
