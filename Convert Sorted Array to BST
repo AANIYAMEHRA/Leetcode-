@@ -17,28 +17,69 @@ Explanation: [1,null,3] and [3,1] are both height-balanced BSTs.
 
 
 
+
+
 CODE //
 
 
 
 
-class Solution {
-public:
-    TreeNode* helper(vector<int>& nums, int st, int end){
-        if(st > end){
-            return NULL;
-        }
 
-        int mid = st + (end-st)/2;
-        TreeNode* root = new TreeNode(nums[mid]);
+#include <iostream>
+#include <vector>
+using namespace std;
 
-        root->left = helper(nums, st, mid-1);
-        root->right = helper(nums, mid+1, end);
+// Structure of a tree node
+struct TreeNode {
+    int val;
+    TreeNode* left;
+    TreeNode* right;
 
-        return root;
-    }
-    
-    TreeNode* sortedArrayToBST(vector<int>& nums) {
-        return helper(nums, 0, nums.size()-1);
+    TreeNode(int x) {
+        val = x;
+        left = nullptr;
+        right = nullptr;
     }
 };
+
+TreeNode* build(vector<int>& nums, int left, int right) {
+    // Base case
+    if (left > right) {
+        return nullptr;
+    }
+
+    // Find middle element
+    int mid = left + (right - left) / 2;
+
+    // Create root node
+    TreeNode* root = new TreeNode(nums[mid]);
+
+    // Build left and right subtrees
+    root->left = build(nums, left, mid - 1);
+    root->right = build(nums, mid + 1, right);
+
+    return root;
+}
+
+// Print the tree in preorder
+void preorder(TreeNode* root) {
+    if (root == nullptr) {
+        return;
+    }
+
+    cout << root->val << " ";
+    preorder(root->left);
+    preorder(root->right);
+}
+
+int main() {
+    vector<int> nums = {-10, -3, 0, 5, 9};
+
+    TreeNode* root = build(nums, 0, nums.size() - 1);
+
+    cout << "Preorder traversal: ";
+    preorder(root);
+
+    return 0;
+}
+
